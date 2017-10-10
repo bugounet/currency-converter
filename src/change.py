@@ -51,7 +51,7 @@ OR I haven't fount it yet and try another change-rate (then I hope to find it).
 """
 from decimal import Decimal
 
-from price import Price
+from .price import Price
 
 
 class ChangeRateTable(object):

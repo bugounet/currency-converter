@@ -3,14 +3,14 @@ from unittest import TestCase
 from unittest.mock import Mock
 from decimal import Decimal
 
-from converter_exceptions import DialectProblem
-from price import Price
+from src.exceptions import DialectProblem
+from src.price import Price
 
 
 class ChangeRatesParserTestCase(TestCase):
     def test_direct_change_rate_identification(self):
         # assuming
-        from parser import ChangeRatesParser
+        from src.parser import ChangeRatesParser
 
         mocked_input = Mock()
         mocked_input.change_rates = ["EUR;GBP;1.5", "USD;SEK;12"]
@@ -42,7 +42,7 @@ class ChangeRatesParserTestCase(TestCase):
     def test_split_and_cast_line(self):
         # assuming
         mocked_input = Mock()
-        from parser import ChangeRatesParser
+        from src.parser import ChangeRatesParser
         parser = ChangeRatesParser(mocked_input)
 
         # when
@@ -54,8 +54,8 @@ class ChangeRatesParserTestCase(TestCase):
         self.assertEqual(result, ("ABC", "DEF", Decimal("123")))
 
     def test_split_and_cast_line_meets_non_iso_data(self):
-        from parser import ChangeRatesParser
-        from converter_exceptions import DialectProblem
+        from src.parser import ChangeRatesParser
+        from src.exceptions import DialectProblem
 
         # assuming
         mocked_input = Mock()
@@ -85,8 +85,8 @@ class ChangeRatesParserTestCase(TestCase):
 
     def test_split_and_cast_line_with_non_american_numbers_notation(self):
         "Expected floating point change rate."
-        from parser import ChangeRatesParser
-        from converter_exceptions import DialectProblem
+        from src.parser import ChangeRatesParser
+        from src.exceptions import DialectProblem
 
         # assuming
         mocked_input = Mock()
@@ -107,7 +107,7 @@ class ChangeRatesParserTestCase(TestCase):
 class RequestParserTestCase(TestCase):
 
     def test_get_source_price(self):
-        from parser import RequestParser
+        from src.parser import RequestParser
         # assuming
         mocked_input = Mock()
         mocked_input.client_request = "USD;20.1;EUR\r\n"
@@ -121,7 +121,7 @@ class RequestParserTestCase(TestCase):
         self.assertEqual(parser.target_currency, "EUR")
 
     def test_get_price_to_convert(self):
-        from parser import RequestParser
+        from src.parser import RequestParser
         # assuming
         mocked_input = Mock()
         mocked_input.client_request = "Usd;20.3;Eur\r\n"
@@ -135,7 +135,7 @@ class RequestParserTestCase(TestCase):
         )
 
     def test_get_target_currency(self):
-        from parser import RequestParser
+        from src.parser import RequestParser
         # assuming
         mocked_input = Mock()
         mocked_input.client_request = "UsD;20.23;EuR\r\n"
@@ -147,7 +147,7 @@ class RequestParserTestCase(TestCase):
         self.assertEqual(parser.get_target_currency(), "EUR")
 
     def test_parsing_too_few_args(self):
-        from parser import RequestParser
+        from src.parser import RequestParser
         # assuming
         mocked_input = Mock()
 
@@ -164,7 +164,7 @@ class RequestParserTestCase(TestCase):
             )
 
     def test_parsing_too_many_args(self):
-        from parser import RequestParser
+        from src.parser import RequestParser
         # assuming
         mocked_input = Mock()
 
@@ -181,7 +181,7 @@ class RequestParserTestCase(TestCase):
             )
     def test_parsing_non_decimal_amount(self):
 
-        from parser import RequestParser
+        from src.parser import RequestParser
         # assuming
         mocked_input = Mock()
 

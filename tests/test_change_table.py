@@ -7,7 +7,7 @@ from decimal import Decimal
 class ChangeTableTestCase(TestCase):
     def test_direct_change_rate_identification(self):
         # assuming
-        from change import ChangeRateTable
+        from src.change import ChangeRateTable
 
         change_table = ChangeRateTable(None)
         change_table.tree = {
@@ -26,7 +26,7 @@ class ChangeTableTestCase(TestCase):
 
     def test_1_step_change(self):
         # assuming
-        from change import ChangeRateTable
+        from src.change import ChangeRateTable
 
         change_table = ChangeRateTable(None)
         change_table.tree = {
@@ -48,7 +48,7 @@ class ChangeTableTestCase(TestCase):
 
     def test_infinite_loop_break(self):
         # assuming
-        from change import ChangeRateTable
+        from src.change import ChangeRateTable
 
         change_table = ChangeRateTable(None)
         # there is a loop --> eur -> usd -> gbp -> eur
@@ -77,8 +77,8 @@ class ChangeTableTestCase(TestCase):
 
     def test_inverse_change_rate(self):
         # assuming
-        from parser import ChangeRatesParser
-        from change import ChangeRateTable
+        from src.parser import ChangeRatesParser
+        from src.change import ChangeRateTable
 
         class MockChangeRatesParser(ChangeRatesParser):
             def get_rates_lines(self):

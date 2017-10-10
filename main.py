@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import sys
 
-from input import Input
-from change import ChangeRateTable
-from parser import RequestParser, ChangeRatesParser
+from src.input import Input
+from src.change import ChangeRateTable
+from src.parser import RequestParser, ChangeRatesParser
 
 
 if __name__ == "__main__":

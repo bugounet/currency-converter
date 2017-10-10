@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 import csv
-from price import Price
 from decimal import (
     Decimal,
     InvalidOperation
 )
-from converter_exceptions import (
-    DialectProblem,
-)
+from .price import Price
+from .exceptions import DialectProblem
 
 class RequestParser(object):
     """ Request parser is in charge of splitting request line & casting values

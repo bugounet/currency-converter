@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from converter_exceptions import DialectProblem, FileProblem
+from .exceptions import DialectProblem, FileProblem
 
 
 class Input(object):
